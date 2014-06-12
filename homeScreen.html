@@ -1,50 +1,47 @@
-<div class="home">
-	
-	<div>
-		<h1>Welcome <?php echo $_SESSION["pseudo"]; ?></h1>
-		<form action="index.php" method="POST">
+<div class="home container">
+	<div class="jokesTen">
+		<form action="index.php" method="POST" class="disconnect">
 			<input type="hidden" name="destroy" value="true">
-			<button type="submit">Disconnect</button>
+			<button type="submit">DISCONNECT</button>
 		</form>
-	</div>
-	<hr>
-	<div class="lastJokes">
-		<h2>Last 10 jokes</h2>
-		<div class="jokes">
-			<ul>
+		<h1>Welcome <span><?php echo $_SESSION["pseudo"]; ?></span></h1>
+		<div class="lastJokes">
+			<h2>Last 10 jokes</h2>
+			<div class="jokes">
+				<ul>
+				<?php
+					if(!isset($_GET["page"]))$page = 0;
+					else{
+						if($_GET["page"]<=0)$page = 0;
+						else $page = ($_GET["page"]-1)*10;
+					}
+					$getJokes = $db->prepare("SELECT * FROM jokes ORDER BY id DESC LIMIT $page, 10");
+					$getJokes->execute();
+					while($joke = $getJokes->fetch()){
+						echo "<li>".$joke["txt"]."</li>";
+					}
+				?>	
+				</ul>
+			</div>
 			<?php
-				if(!isset($_GET["page"]))$page = 0;
-				else{
-					if($_GET["page"]<=0)$page = 0;
-					else $page = ($_GET["page"]-1)*10;
+				$nextPage = $_GET["page"]+1;
+				$previousPage = $_GET["page"]-1;
+				if(!isset($_GET["page"])){
+					$nextPage = 2;
+					$previousPage = 0;
 				}
-				$getJokes = $db->prepare("SELECT * FROM jokes ORDER BY id DESC LIMIT $page, 10");
-				$getJokes->execute();
-				while($joke = $getJokes->fetch()){
-					echo "<li>".$joke["txt"]."</li>";
-				}
-			?>	
-			</ul>
+				if($previousPage!=0) echo "<a href='index.php?page=$previousPage' class='previous'> Previous </a>";
+				echo "<a href='index.php?page=$nextPage' class='next'> Next </a>";
+			?>
+			
 		</div>
-		<?php
-			$nextPage = $_GET["page"]+1;
-			$previousPage = $_GET["page"]-1;
-			if(!isset($_GET["page"])){
-				$nextPage = 2;
-				$previousPage = 0;
-			}
-			if($previousPage!=0) echo "<a href='index.php?page=$previousPage'> Previous </a>";
-			echo "<a href='index.php?page=$nextPage'> Next </a>";
-		?>
-		
 	</div>
-	<hr>
 	<div class="addJoke">
 		<h2>Add your own joke !</h2>
 		<form action="index.php" method="POST">
 			<input type="hidden" name="addJoke" value="true">
-			<textarea name="joke" cols="50" rows="4" placeholder="Your joke"></textarea><br />
-			<input type="submit" value="Send it">
+			<textarea name="joke" cols="50" rows="4"></textarea><br />
+			<input type="submit" class="sendJoke" value="Send it">
 		</form>
 	</div>
 </div>

@@ -1,40 +1,41 @@
-<div>
-	<h1>Register</h1>
-	<form action="index.php" method="POST">
-		<input type="hidden" name="register" value="true">
-		<label>
-			Your pseudo :
-			<input type="text" placeholder="Pseudo" name="pseudo" value="<?php echo $_POST["pseudo"];?>">
-			<?php if($errors->noPseudo) echo "<span>Please insert correct pseudo.</span>";?>
-			<?php if($errors->alreadyUser) echo "<span>This username is already taken.</span>";?>
-		</label><br />
-		<label>
-			Your email :
-			<input type="text" placeholder="example@domain.be" name="email" value="<?php echo $_POST["email"];?>">
-			<?php if($errors->emailWrong) echo "<span>Wrong email address.</span>";?>
-			<?php if($errors->alreadyEmail) echo "<span>This email is already taken.</span>";?>
-		</label><br />
-		<label>
-			Your password :
-			<input type="password" placeholder="Password" name="password">
-			<?php if($errors->noPassword) echo "<span>Password must contain at least 5 characters.</span>";?>
-		</label><br />
-		<input type="submit" value="I'm in !">
-	</form>
-</div>
-<div>
-	<h1>Log In</h1>
-	<form action="index.php" method="POST">
-		<input type="hidden" name="logIn" value="true">
-		<label>
-			Your pseudo :
-			<input type="text" placeholder="Pseudo" name="pseudo" value="<?php echo $_POST["pseudo"];?>">
-		</label><br />
-		<label>
-			Your password :
-			<input type="password" placeholder="Password" name="password">
-		</label><br />
-		<input type="submit" value="Log me in!">
-		<?php if($logInError) echo "<span>Hu hu, are you sure ?</span>";?>
-	</form>
+<div class="container">
+	<div class="register">
+		<h1>Register</h1>
+		<form action="index.php" method="POST">
+			<input type="hidden" name="register" value="true">
+			<label class="size1of2">
+				<input type="text" autocomplete="off" placeholder="PSEUDO" name="pseudo" value="<?php echo $_POST["pseudo"];?>">
+			</label>
+			<label class="size1of2">
+				<input type="password" autocomplete="off" placeholder="PASSWORD" name="password">
+			</label>
+			<label class="size1of1">
+				<input type="text" autocomplete="off" placeholder="EMAIL" name="email" value="<?php echo $_POST["email"];?>">
+			</label>
+			<button type="submit">I'M IN !</button>
+			<div class="errors">
+				<?php if($errors->noPseudo) echo "<span>Please insert correct pseudo.</span>";?>
+				<?php if($errors->alreadyUser) echo "<span>This username is already taken.</span>";?>
+				<?php if($errors->noPassword) echo "<span>Password must contain at least 5 characters.</span>";?>
+				<?php if($errors->emailWrong) echo "<span>Wrong email address.</span>";?>
+				<?php if($errors->alreadyEmail) echo "<span>This email is already taken.</span>";?>
+			</div>
+		</form>
+	</div>
+	<div class="logIn">
+		<h1>Log In</h1>
+		<form action="index.php" method="POST">
+			<input type="hidden" name="logIn" value="true">
+			<label class="size1of2">
+				<input type="text" placeholder="PSEUDO" name="pseudo" value="<?php echo $_POST["pseudo"];?>">
+			</label>
+			<label class="size1of2">
+				<input type="password" placeholder="PASSWORD" name="password">
+			</label>
+			<button type="submit">LOG ME IN !</button>
+			<div class="errors">
+				<?php if($logInError) echo "<span>Hu hu, are you sure ?</span>";?>
+			</div>
+		</form>
+	</div>
 </div>

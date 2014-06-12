@@ -24,7 +24,6 @@
 			"txt" => $_POST["joke"],
 			"user" => $_SESSION["pseudo"]
 			));
-		echo "envoyé";
 	}
 
 ?>

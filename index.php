@@ -17,6 +17,8 @@
 <head>
 	<meta charset="utf-8">
 	<title>Hoebregts Louis - 3TID2</title>
+	<link rel="stylesheet" href="style.css" type="text/css" />
+	<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 </head>
 <body>
 <?php
