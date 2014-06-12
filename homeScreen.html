@@ -18,7 +18,7 @@
 					$getJokes = $db->prepare("SELECT * FROM jokes ORDER BY id DESC LIMIT $page, 10");
 					$getJokes->execute();
 					while($joke = $getJokes->fetch()){
-						echo "<li>".$joke["txt"]."</li>";
+						echo "<li>".$joke["txt"]."<span>".$joke["user"]."</li>";
 					}
 				?>	
 				</ul>

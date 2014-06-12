@@ -79,7 +79,14 @@ button{
 	color: #313335;
 	text-align: left;
 	padding: 15px 0;
+	clear: both;
 }
+.home li span{
+	float: right;
+	margin: 10px 0;
+	color: #ccc;
+}
+.home li span:before{content:"- ";}
 .jokesTen{position: relative;background: white;padding: 25px 25px 105px 25px;}
 .jokesTen a{
 	width: 50%;
